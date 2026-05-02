@@ -1,0 +1,140 @@
+[
+  {
+    "id": "case-001",
+    "title": "Eigenvalues of a 2x2 Matrix",
+    "topic": "Linear Algebra — Eigenvalues & Eigenvectors",
+    "source": "OpenStax Elementary Linear Algebra, Ch. 5",
+    "problem": "Find the eigenvalues of matrix $A = \\begin{pmatrix} 4 & 1 \\\\ 2 & 3 \\end{pmatrix}$.",
+    "aiOutput": {
+      "steps": [
+        {
+          "label": "Characteristic Equation",
+          "math": "\\det(A - \\lambda I) = 0",
+          "hasError": false
+        },
+        {
+          "label": "Expand Determinant",
+          "math": "(4 - \\lambda)(3 - \\lambda) - 1 = 0",
+          "hasError": true,
+          "errorCode": "CAL-02",
+          "errorNote": "AI computed (4)(3)-(1)(2) as 11 instead of 10. The subtracted term should be (1)(2)=2, not 1."
+        },
+        {
+          "label": "Simplify",
+          "math": "\\lambda^2 - 7\\lambda + 11 = 0",
+          "hasError": true,
+          "errorCode": "CAL-02",
+          "errorNote": "Incorrect constant term propagated from previous step. Should be 10, not 11."
+        },
+        {
+          "label": "Solve",
+          "math": "\\lambda = \\frac{7 \\pm \\sqrt{5}}{2}",
+          "hasError": true,
+          "errorCode": "CAL-02",
+          "errorNote": "Wrong eigenvalues due to cascading calculation error. Correct discriminant is 49-40=9, not 49-44=5."
+        }
+      ],
+      "score": 2,
+      "maxScore": 5
+    },
+    "expertOutput": {
+      "steps": [
+        {
+          "label": "Step 1: Set up characteristic equation",
+          "math": "\\det(A - \\lambda I) = \\det\\begin{pmatrix} 4-\\lambda & 1 \\\\ 2 & 3-\\lambda \\end{pmatrix} = 0"
+        },
+        {
+          "label": "Step 2: Expand the determinant",
+          "math": "(4-\\lambda)(3-\\lambda) - (2)(1) = 0"
+        },
+        {
+          "label": "Step 3: Simplify the polynomial",
+          "math": "\\lambda^2 - 7\\lambda + 12 - 2 = \\lambda^2 - 7\\lambda + 10 = 0"
+        },
+        {
+          "label": "Step 4: Factor and solve",
+          "math": "(\\lambda - 2)(\\lambda - 5) = 0 \\implies \\lambda_1 = 2, \\quad \\lambda_2 = 5"
+        },
+        {
+          "label": "Step 5: Verification",
+          "math": "\\text{tr}(A) = 4+3 = 7 = \\lambda_1+\\lambda_2 \\checkmark \\qquad \\det(A) = 10 = \\lambda_1 \\cdot \\lambda_2 \\checkmark"
+        }
+      ],
+      "score": 5,
+      "maxScore": 5
+    },
+    "auditSummary": {
+      "errorsFound": ["CAL-02"],
+      "rootCause": "AI miscalculated the determinant: used (4)(3)-(1)(1)=11 instead of (4)(3)-(1)(2)=10. This cascading error produced irrational eigenvalues instead of the correct integer values.",
+      "impact": "Complete answer invalidation — wrong eigenvalues propagate to wrong eigenvectors, wrong diagonalization, etc."
+    }
+  },
+  {
+    "id": "case-002",
+    "title": "Subspace Verification & Basis",
+    "topic": "Linear Algebra — Vector Spaces",
+    "source": "OpenStax Elementary Linear Algebra, Ch. 4",
+    "problem": "Let $W = \\left\\{ \\begin{pmatrix} a \\\\ b \\\\ c \\end{pmatrix} \\in \\mathbb{R}^3 : a - 2b + c = 0 \\right\\}$. Prove $W$ is a subspace and find a basis.",
+    "aiOutput": {
+      "steps": [
+        {
+          "label": "Closure under addition",
+          "math": "(a_1+a_2) - 2(b_1+b_2) + (c_1+c_2) = 0+0 = 0 \\checkmark",
+          "hasError": false
+        },
+        {
+          "label": "Closure under scalar multiplication",
+          "math": "k a_1 - 2(k b_1) + k c_1 = k(a_1-2b_1+c_1) = 0 \\checkmark",
+          "hasError": false
+        },
+        {
+          "label": "Missing: Zero vector check",
+          "math": "\\text{(AI skipped this step entirely)}",
+          "hasError": true,
+          "errorCode": "GAP-04",
+          "errorNote": "The Subspace Test requires 3 conditions. AI omitted checking that the zero vector 0 is in W."
+        },
+        {
+          "label": "Parametrize and find basis",
+          "math": "\\begin{pmatrix} a\\\\b\\\\c \\end{pmatrix} = s\\begin{pmatrix} 2\\\\1\\\\0 \\end{pmatrix} + t\\begin{pmatrix} 1\\\\0\\\\1 \\end{pmatrix}",
+          "hasError": true,
+          "errorCode": "CAL-02",
+          "errorNote": "Second basis vector is wrong. From a=2b-c: coefficient of t should be (-1, 0, 1), not (1, 0, 1)."
+        }
+      ],
+      "score": 2,
+      "maxScore": 5
+    },
+    "expertOutput": {
+      "steps": [
+        {
+          "label": "Step 1: Zero vector check",
+          "math": "\\mathbf{0} = \\begin{pmatrix}0\\\\0\\\\0\\end{pmatrix}: \\quad 0 - 2(0) + 0 = 0 \\checkmark \\implies \\mathbf{0} \\in W"
+        },
+        {
+          "label": "Step 2: Closure under addition",
+          "math": "(a_1{+}a_2) - 2(b_1{+}b_2) + (c_1{+}c_2) = \\underbrace{(a_1{-}2b_1{+}c_1)}_{=0} + \\underbrace{(a_2{-}2b_2{+}c_2)}_{=0} = 0 \\checkmark"
+        },
+        {
+          "label": "Step 3: Closure under scalar multiplication",
+          "math": "k a_1 - 2(k b_1) + k c_1 = k(a_1-2b_1+c_1) = k \\cdot 0 = 0 \\checkmark"
+        },
+        {
+          "label": "Step 4: Parametrize (correct basis)",
+          "math": "a = 2b - c \\implies \\begin{pmatrix}a\\\\b\\\\c\\end{pmatrix} = s\\begin{pmatrix}2\\\\1\\\\0\\end{pmatrix} + t\\begin{pmatrix}-1\\\\0\\\\1\\end{pmatrix}"
+        },
+        {
+          "label": "Step 5: Verify independence & dimension",
+          "math": "\\operatorname{rank}\\begin{pmatrix}2&-1\\\\1&0\\\\0&1\\end{pmatrix} = 2 \\implies \\text{Basis} = \\left\\{\\begin{pmatrix}2\\\\1\\\\0\\end{pmatrix},\\begin{pmatrix}-1\\\\0\\\\1\\end{pmatrix}\\right\\},\\quad \\dim(W)=2"
+        }
+      ],
+      "score": 5,
+      "maxScore": 5
+    },
+    "auditSummary": {
+      "errorsFound": ["GAP-04", "CAL-02"],
+      "rootCause": "Two distinct errors: (1) AI skipped the zero vector membership check — a fundamental step in the Subspace Test. (2) AI produced a wrong basis vector (1,0,1) instead of (-1,0,1) due to sign error in parametrization.",
+      "impact": "Part (a) proof is incomplete (missing axiom). Part (b) produces a set that does NOT span W — any linear combination using (1,0,1) yields vectors outside the subspace."
+    }
+  }
+]

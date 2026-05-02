@@ -1,0 +1,34 @@
+[
+  {
+    "code": "LOG-01",
+    "category": "Logical Hallucination",
+    "description": "AI fabricates a theorem, lemma, or logical rule that does not exist in standard mathematics. For example, claiming det(A+B) = det(A) + det(B).",
+    "severity": "High",
+    "color": "#ef4444",
+    "icon": "brain"
+  },
+  {
+    "code": "CAL-02",
+    "category": "Calculation Error",
+    "description": "Basic arithmetic or algebraic manipulation errors in computation steps. For example, computing a determinant incorrectly.",
+    "severity": "High",
+    "color": "#f97316",
+    "icon": "calculator"
+  },
+  {
+    "code": "SYM-03",
+    "category": "LaTeX / Notation",
+    "description": "Non-standard mathematical notation, malformed LaTeX syntax, or inconsistent symbol usage throughout the solution.",
+    "severity": "Medium",
+    "color": "#eab308",
+    "icon": "code"
+  },
+  {
+    "code": "GAP-04",
+    "category": "Pedagogical Gap",
+    "description": "Skipping critical intermediate steps, making the solution hard to follow for the target student audience.",
+    "severity": "Medium",
+    "color": "#3b82f6",
+    "icon": "book-open"
+  }
+]
