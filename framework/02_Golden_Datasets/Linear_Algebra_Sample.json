@@ -1,0 +1,150 @@
+{
+  "dataset_metadata": {
+    "title": "Golden Dataset — Linear Algebra Quality Assurance Samples",
+    "version": "1.0",
+    "author": "Huynh — Mathematics Content Specialist",
+    "domain": "Linear Algebra",
+    "textbook_reference": "OpenStax — Elementary Linear Algebra",
+    "purpose": "Demonstrate the full Audit & Correct pipeline from AI Raw Output to Expert-approved Golden Solution",
+    "error_taxonomy_ref": "Error_Taxonomy_Analysis.csv"
+  },
+  "case_studies": [
+    {
+      "case_id": "LA-EIGEN-001",
+      "topic": "Eigenvalues and Eigenvectors",
+      "difficulty": "University Level — Introductory Linear Algebra",
+      "problem_statement": {
+        "text": "Let $A = \\begin{pmatrix} 4 & 1 \\\\ 2 & 3 \\end{pmatrix}$. Find all eigenvalues and corresponding eigenvectors of $A$. Verify your results.",
+        "source_style": "OpenStax Elementary Linear Algebra, Chapter 5",
+        "tags": ["eigenvalues", "eigenvectors", "characteristic polynomial", "2x2 matrix"]
+      },
+      "ai_raw_output": {
+        "model": "MathGPT v2 (simulated)",
+        "timestamp": "2024-01-15T10:30:00Z",
+        "solution_text": "### Solution\n\n**Step 1: Find the characteristic polynomial.**\n\nWe compute $\\det(A - \\lambda I)$:\n\n$$\\det(A - \\lambda I) = \\det\\begin{pmatrix} 4-\\lambda & 1 \\\\ 2 & 3-\\lambda \\end{pmatrix}$$\n\n$$= (4-\\lambda)(3-\\lambda) - (1)(2)$$\n\n$$= \\lambda^2 - 7\\lambda + 12 - 2$$\n\n$$= \\lambda^2 - 7\\lambda + 10$$\n\n**Step 2: Solve for eigenvalues.**\n\nFactoring: $\\lambda^2 - 7\\lambda + 10 = (\\lambda - 2)(\\lambda - 5) = 0$\n\nSo $\\lambda_1 = 2$ and $\\lambda_2 = 5$.\n\n**Step 3: Find eigenvectors.**\n\nFor $\\lambda_1 = 2$:\n\n$$(A - 2I)\\mathbf{v} = \\mathbf{0}$$\n\n$$\\begin{pmatrix} 2 & 1 \\\\ 2 & 1 \\end{pmatrix}\\begin{pmatrix} v_1 \\\\ v_2 \\end{pmatrix} = \\begin{pmatrix} 0 \\\\ 0 \\end{pmatrix}$$\n\nFrom the first row: $2v_1 + v_2 = 0$, so $v_2 = -2v_1$.\n\nEigenvector: $\\mathbf{v}_1 = \\begin{pmatrix} 1 \\\\ -2 \\end{pmatrix}$.\n\nFor $\\lambda_2 = 5$:\n\n$$(A - 5I)\\mathbf{v} = \\mathbf{0}$$\n\n$$\\begin{pmatrix} -1 & 1 \\\\ 2 & -2 \\end{pmatrix}\\begin{pmatrix} v_1 \\\\ v_2 \\end{pmatrix} = \\begin{pmatrix} 0 \\\\ 0 \\end{pmatrix}$$\n\nFrom the first row: $-v_1 + v_2 = 0$, so $v_2 = v_1$.\n\nEigenvector: $\\mathbf{v}_2 = \\begin{pmatrix} 1 \\\\ 1 \\end{pmatrix}$.\n\n### Final Answer\n\nEigenvalues: $\\lambda_1 = 2$, $\\lambda_2 = 5$.\n\nEigenvectors: $\\mathbf{v}_1 = \\begin{pmatrix} 1 \\\\ -2 \\end{pmatrix}$, $\\mathbf{v}_2 = \\begin{pmatrix} 1 \\\\ 1 \\end{pmatrix}$.",
+        "contains_errors": true
+      },
+      "expert_audit": {
+        "expert_id": "EXP-HUYNH",
+        "audit_date": "2024-01-16",
+        "errors_found": [
+          {
+            "error_code": "ERR-CMP-001",
+            "severity": "Medium",
+            "location": "Step 1 — Characteristic polynomial expansion",
+            "description": "Arithmetic error in expanding $(4-\\lambda)(3-\\lambda)$. The AI computed $(4-\\lambda)(3-\\lambda) = \\lambda^2 - 7\\lambda + 12$, which is correct. However, the final polynomial $\\lambda^2 - 7\\lambda + 10$ is correct only by coincidence of the subtraction. The intermediate step is misleadingly written — the expansion should explicitly show $12 - 2 = 10$. While the result is numerically correct here, the presentation invites confusion."
+          },
+          {
+            "error_code": "ERR-PED-004",
+            "severity": "Medium",
+            "location": "After Step 3 — Missing verification",
+            "description": "The AI does not verify the eigenpairs by computing $A\\mathbf{v}_1$ and $A\\mathbf{v}_2$ to confirm $A\\mathbf{v} = \\lambda\\mathbf{v}$. For a student-facing solution, this verification step is mandatory per the LaTeX Coding Standard solution template."
+          },
+          {
+            "error_code": "ERR-PED-001",
+            "severity": "Medium",
+            "location": "Step 3 — Eigenvector for $\\lambda_2 = 5$",
+            "description": "The AI correctly identifies $v_2 = v_1$ but does not explain that the second row $2v_1 - 2v_2 = 0$ yields the same equation, confirming the system has one free variable. Insufficient justification for why a single eigenvector spans the eigenspace."
+          },
+          {
+            "error_code": "ERR-FMT-003",
+            "severity": "Low",
+            "location": "Overall structure",
+            "description": "The solution lacks a clear 'Verification' section before the Final Answer. The solution template requires: Problem → Steps → Verification → Final Answer."
+          }
+        ],
+        "rubric_score": {
+          "mathematical_correctness": 36,
+          "completeness": 12,
+          "pedagogical_clarity": 14,
+          "latex_formatting": 8,
+          "notation_consistency": 9,
+          "total": 79,
+          "tier": "Good"
+        },
+        "disposition": "Approve with mandatory revisions"
+      },
+      "final_corrected_version": {
+        "solution_text": "### Problem\n\nLet $A = \\begin{pmatrix} 4 & 1 \\\\ 2 & 3 \\end{pmatrix}$. Find all eigenvalues and corresponding eigenvectors of $A$. Verify your results.\n\n### Solution\n\n**Step 1: Compute the characteristic polynomial.**\n\nThe eigenvalues of $A$ satisfy $\\det(A - \\lambda I) = 0$. We compute:\n\n$$\\begin{aligned}\n\\det(A - \\lambda I) &= \\det\\begin{pmatrix} 4-\\lambda & 1 \\\\ 2 & 3-\\lambda \\end{pmatrix} \\\\\n&= (4-\\lambda)(3-\\lambda) - (1)(2) \\\\\n&= 12 - 4\\lambda - 3\\lambda + \\lambda^2 - 2 \\\\\n&= \\lambda^2 - 7\\lambda + 10\n\\end{aligned}$$\n\n**Step 2: Solve for eigenvalues.**\n\nWe factor the characteristic polynomial:\n\n$$\\lambda^2 - 7\\lambda + 10 = (\\lambda - 2)(\\lambda - 5) = 0$$\n\nTherefore, the eigenvalues are $\\lambda_1 = 2$ and $\\lambda_2 = 5$.\n\n**Step 3: Find the eigenvector for $\\lambda_1 = 2$.**\n\nWe solve $(A - 2I)\\mathbf{v} = \\mathbf{0}$:\n\n$$A - 2I = \\begin{pmatrix} 4-2 & 1 \\\\ 2 & 3-2 \\end{pmatrix} = \\begin{pmatrix} 2 & 1 \\\\ 2 & 1 \\end{pmatrix}$$\n\nRow reducing:\n\n$$\\begin{pmatrix} 2 & 1 \\\\ 2 & 1 \\end{pmatrix} \\xrightarrow{R_2 \\to R_2 - R_1} \\begin{pmatrix} 2 & 1 \\\\ 0 & 0 \\end{pmatrix}$$\n\nThe system yields a single equation: $2v_1 + v_2 = 0$, so $v_2 = -2v_1$. Setting $v_1 = 1$ as the free variable:\n\n$$\\mathbf{v}_1 = \\begin{pmatrix} 1 \\\\ -2 \\end{pmatrix}$$\n\nThe eigenspace for $\\lambda_1 = 2$ is $E_2 = \\operatorname{span}\\left\\{\\begin{pmatrix} 1 \\\\ -2 \\end{pmatrix}\\right\\}$.\n\n**Step 4: Find the eigenvector for $\\lambda_2 = 5$.**\n\nWe solve $(A - 5I)\\mathbf{v} = \\mathbf{0}$:\n\n$$A - 5I = \\begin{pmatrix} 4-5 & 1 \\\\ 2 & 3-5 \\end{pmatrix} = \\begin{pmatrix} -1 & 1 \\\\ 2 & -2 \\end{pmatrix}$$\n\nRow reducing:\n\n$$\\begin{pmatrix} -1 & 1 \\\\ 2 & -2 \\end{pmatrix} \\xrightarrow{R_2 \\to R_2 + 2R_1} \\begin{pmatrix} -1 & 1 \\\\ 0 & 0 \\end{pmatrix}$$\n\nThe system yields: $-v_1 + v_2 = 0$, so $v_2 = v_1$. Note that the second row $2v_1 - 2v_2 = 0$ is a scalar multiple of the first, confirming the system has exactly one free variable. Setting $v_1 = 1$:\n\n$$\\mathbf{v}_2 = \\begin{pmatrix} 1 \\\\ 1 \\end{pmatrix}$$\n\nThe eigenspace for $\\lambda_2 = 5$ is $E_5 = \\operatorname{span}\\left\\{\\begin{pmatrix} 1 \\\\ 1 \\end{pmatrix}\\right\\}$.\n\n### Verification\n\nWe verify each eigenpair by confirming $A\\mathbf{v} = \\lambda\\mathbf{v}$.\n\n**Check $\\lambda_1 = 2$, $\\mathbf{v}_1 = \\begin{pmatrix} 1 \\\\ -2 \\end{pmatrix}$:**\n\n$$A\\mathbf{v}_1 = \\begin{pmatrix} 4 & 1 \\\\ 2 & 3 \\end{pmatrix}\\begin{pmatrix} 1 \\\\ -2 \\end{pmatrix} = \\begin{pmatrix} 4(1) + 1(-2) \\\\ 2(1) + 3(-2) \\end{pmatrix} = \\begin{pmatrix} 2 \\\\ -4 \\end{pmatrix} = 2\\begin{pmatrix} 1 \\\\ -2 \\end{pmatrix} = \\lambda_1 \\mathbf{v}_1 \\quad \\checkmark$$\n\n**Check $\\lambda_2 = 5$, $\\mathbf{v}_2 = \\begin{pmatrix} 1 \\\\ 1 \\end{pmatrix}$:**\n\n$$A\\mathbf{v}_2 = \\begin{pmatrix} 4 & 1 \\\\ 2 & 3 \\end{pmatrix}\\begin{pmatrix} 1 \\\\ 1 \\end{pmatrix} = \\begin{pmatrix} 4(1) + 1(1) \\\\ 2(1) + 3(1) \\end{pmatrix} = \\begin{pmatrix} 5 \\\\ 5 \\end{pmatrix} = 5\\begin{pmatrix} 1 \\\\ 1 \\end{pmatrix} = \\lambda_2 \\mathbf{v}_2 \\quad \\checkmark$$\n\nBoth eigenpairs are confirmed.\n\n### Final Answer\n\n$$\\boxed{\\lambda_1 = 2, \\quad \\mathbf{v}_1 = \\begin{pmatrix} 1 \\\\ -2 \\end{pmatrix}; \\qquad \\lambda_2 = 5, \\quad \\mathbf{v}_2 = \\begin{pmatrix} 1 \\\\ 1 \\end{pmatrix}}$$",
+        "audit_annotations": [
+          "<!-- AUDIT: ERR-CMP-001 | Expanded characteristic polynomial step-by-step showing 12 - 4λ - 3λ + λ² - 2 explicitly -->",
+          "<!-- AUDIT: ERR-PED-004 | Added full Verification section computing Av = λv for both eigenpairs -->",
+          "<!-- AUDIT: ERR-PED-001 | Added explanation that R2 is a scalar multiple of R1, confirming one free variable -->",
+          "<!-- AUDIT: ERR-FMT-003 | Restructured into Problem → Steps → Verification → Final Answer template -->"
+        ]
+      }
+    },
+    {
+      "case_id": "LA-VSPACE-001",
+      "topic": "Vector Spaces — Subspace Verification and Basis",
+      "difficulty": "University Level — Introductory Linear Algebra",
+      "problem_statement": {
+        "text": "Let $W = \\left\\{ \\begin{pmatrix} a \\\\ b \\\\ c \\end{pmatrix} \\in \\mathbb{R}^3 : a - 2b + c = 0 \\right\\}$. (a) Prove that $W$ is a subspace of $\\mathbb{R}^3$. (b) Find a basis for $W$ and determine $\\dim(W)$.",
+        "source_style": "OpenStax Elementary Linear Algebra, Chapter 4",
+        "tags": ["vector spaces", "subspace", "basis", "dimension", "homogeneous system"]
+      },
+      "ai_raw_output": {
+        "model": "MathGPT v2 (simulated)",
+        "timestamp": "2024-01-15T14:20:00Z",
+        "solution_text": "### Solution\n\n**(a) Prove $W$ is a subspace.**\n\nA subset $W$ of $\\mathbb{R}^3$ is a subspace if it is closed under addition and scalar multiplication.\n\n**Closure under addition:** Let $\\mathbf{u} = \\begin{pmatrix} a_1 \\\\ b_1 \\\\ c_1 \\end{pmatrix}$ and $\\mathbf{v} = \\begin{pmatrix} a_2 \\\\ b_2 \\\\ c_2 \\end{pmatrix}$ be in $W$. Then $a_1 - 2b_1 + c_1 = 0$ and $a_2 - 2b_2 + c_2 = 0$.\n\n$$\\mathbf{u} + \\mathbf{v} = \\begin{pmatrix} a_1 + a_2 \\\\ b_1 + b_2 \\\\ c_1 + c_2 \\end{pmatrix}$$\n\nWe check: $(a_1+a_2) - 2(b_1+b_2) + (c_1+c_2) = (a_1 - 2b_1 + c_1) + (a_2 - 2b_2 + c_2) = 0 + 0 = 0$. So $\\mathbf{u}+\\mathbf{v} \\in W$.\n\n**Closure under scalar multiplication:** Let $k \\in \\mathbb{R}$.\n\n$$k\\mathbf{u} = \\begin{pmatrix} ka_1 \\\\ kb_1 \\\\ kc_1 \\end{pmatrix}$$\n\nWe check: $ka_1 - 2(kb_1) + kc_1 = k(a_1 - 2b_1 + c_1) = k \\cdot 0 = 0$. So $k\\mathbf{u} \\in W$.\n\nTherefore $W$ is a subspace.\n\n**(b) Find a basis for $W$.**\n\nFrom $a - 2b + c = 0$, we get $a = 2b - c$. Let $b = s$ and $c = t$ where $s, t \\in \\mathbb{R}$.\n\n$$\\begin{pmatrix} a \\\\ b \\\\ c \\end{pmatrix} = \\begin{pmatrix} 2s - t \\\\ s \\\\ t \\end{pmatrix} = s\\begin{pmatrix} 2 \\\\ 1 \\\\ 0 \\end{pmatrix} + t\\begin{pmatrix} 1 \\\\ 0 \\\\ 1 \\end{pmatrix}$$\n\nBasis: $\\left\\{\\begin{pmatrix} 2 \\\\ 1 \\\\ 0 \\end{pmatrix}, \\begin{pmatrix} 1 \\\\ 0 \\\\ 1 \\end{pmatrix}\\right\\}$ and $\\dim(W) = 2$.",
+        "contains_errors": true
+      },
+      "expert_audit": {
+        "expert_id": "EXP-HUYNH",
+        "audit_date": "2024-01-16",
+        "errors_found": [
+          {
+            "error_code": "ERR-LOG-005",
+            "severity": "Medium",
+            "location": "Part (a) — Subspace proof, missing zero vector check",
+            "description": "The AI omits the first and most fundamental condition of the Subspace Test: verifying that the zero vector $\\mathbf{0} \\in W$. The standard three-condition subspace test requires: (1) $\\mathbf{0} \\in W$, (2) closure under addition, (3) closure under scalar multiplication. Skipping condition (1) renders the proof incomplete."
+          },
+          {
+            "error_code": "ERR-CMP-002",
+            "severity": "High",
+            "location": "Part (b) — Parametric representation, second basis vector",
+            "description": "The AI writes $a = 2b - c$, then with $b = s, c = t$: the vector is $\\begin{pmatrix} 2s - t \\\\ s \\\\ t \\end{pmatrix}$. This is decomposed as $s\\begin{pmatrix} 2 \\\\ 1 \\\\ 0 \\end{pmatrix} + t\\begin{pmatrix} 1 \\\\ 0 \\\\ 1 \\end{pmatrix}$. However, $t\\begin{pmatrix} 1 \\\\ 0 \\\\ 1 \\end{pmatrix}$ gives $\\begin{pmatrix} t \\\\ 0 \\\\ t \\end{pmatrix}$, but the coefficient of $t$ in the first component should be $-1$ (from $2s - t$), yielding $t\\begin{pmatrix} -1 \\\\ 0 \\\\ 1 \\end{pmatrix}$. The second basis vector is WRONG."
+          },
+          {
+            "error_code": "ERR-PED-004",
+            "severity": "Medium",
+            "location": "Part (b) — Missing linear independence verification",
+            "description": "The AI does not verify that the proposed basis vectors are linearly independent. A complete solution must confirm linear independence (e.g., by showing the vectors are not scalar multiples of each other, or by computing the rank of the matrix formed by the vectors)."
+          },
+          {
+            "error_code": "ERR-PED-004",
+            "severity": "Medium",
+            "location": "Part (b) — Missing Rank-Nullity cross-check",
+            "description": "The AI does not cross-check $\\dim(W)$ against the Rank-Nullity Theorem. Since $W$ is the null space of $\\begin{pmatrix} 1 & -2 & 1 \\end{pmatrix}$ (a $1 \\times 3$ matrix of rank 1), we should verify: $\\dim(W) = 3 - 1 = 2$."
+          },
+          {
+            "error_code": "ERR-FMT-003",
+            "severity": "Low",
+            "location": "Overall structure",
+            "description": "Missing 'Problem' restatement section and 'Verification' section. No use of $\\boxed{}$ for the final answer."
+          }
+        ],
+        "rubric_score": {
+          "mathematical_correctness": 24,
+          "completeness": 10,
+          "pedagogical_clarity": 12,
+          "latex_formatting": 7,
+          "notation_consistency": 9,
+          "total": 62,
+          "tier": "Needs Improvement"
+        },
+        "disposition": "Return to AI pipeline with detailed feedback"
+      },
+      "final_corrected_version": {
+        "solution_text": "### Problem\n\nLet $W = \\left\\{ \\begin{pmatrix} a \\\\ b \\\\ c \\end{pmatrix} \\in \\mathbb{R}^3 : a - 2b + c = 0 \\right\\}$.\n\n(a) Prove that $W$ is a subspace of $\\mathbb{R}^3$.\n\n(b) Find a basis for $W$ and determine $\\dim(W)$.\n\n### Solution\n\n**Part (a): Prove $W$ is a subspace of $\\mathbb{R}^3$.**\n\nWe apply the Subspace Test. A non-empty subset $W \\subseteq \\mathbb{R}^3$ is a subspace if and only if it satisfies three conditions:\n\n**Condition 1: The zero vector is in $W$.**\n\nLet $\\mathbf{0} = \\begin{pmatrix} 0 \\\\ 0 \\\\ 0 \\end{pmatrix}$. We verify: $0 - 2(0) + 0 = 0$. Thus $\\mathbf{0} \\in W$. $\\checkmark$\n\n**Condition 2: $W$ is closed under vector addition.**\n\nLet $\\mathbf{u} = \\begin{pmatrix} a_1 \\\\ b_1 \\\\ c_1 \\end{pmatrix}, \\mathbf{v} = \\begin{pmatrix} a_2 \\\\ b_2 \\\\ c_2 \\end{pmatrix} \\in W$. By definition, $a_1 - 2b_1 + c_1 = 0$ and $a_2 - 2b_2 + c_2 = 0$.\n\nConsider $\\mathbf{u} + \\mathbf{v} = \\begin{pmatrix} a_1 + a_2 \\\\ b_1 + b_2 \\\\ c_1 + c_2 \\end{pmatrix}$. We check the defining condition:\n\n$$\\begin{aligned}\n(a_1 + a_2) - 2(b_1 + b_2) + (c_1 + c_2) &= (a_1 - 2b_1 + c_1) + (a_2 - 2b_2 + c_2) \\\\\n&= 0 + 0 = 0\n\\end{aligned}$$\n\nThus $\\mathbf{u} + \\mathbf{v} \\in W$. $\\checkmark$\n\n**Condition 3: $W$ is closed under scalar multiplication.**\n\nLet $\\mathbf{u} = \\begin{pmatrix} a_1 \\\\ b_1 \\\\ c_1 \\end{pmatrix} \\in W$ and $k \\in \\mathbb{R}$. Consider $k\\mathbf{u} = \\begin{pmatrix} ka_1 \\\\ kb_1 \\\\ kc_1 \\end{pmatrix}$. We check:\n\n$$ka_1 - 2(kb_1) + kc_1 = k(a_1 - 2b_1 + c_1) = k \\cdot 0 = 0$$\n\nThus $k\\mathbf{u} \\in W$. $\\checkmark$\n\nSince all three conditions are satisfied, $W$ is a subspace of $\\mathbb{R}^3$. $\\blacksquare$\n\n**Part (b): Find a basis for $W$ and determine $\\dim(W)$.**\n\n**Step 1: Parametrize the solution set.**\n\nThe defining equation $a - 2b + c = 0$ gives $a = 2b - c$. Let $b = s$ and $c = t$ be free parameters, where $s, t \\in \\mathbb{R}$. Then:\n\n$$\\begin{pmatrix} a \\\\ b \\\\ c \\end{pmatrix} = \\begin{pmatrix} 2s - t \\\\ s \\\\ t \\end{pmatrix} = s\\begin{pmatrix} 2 \\\\ 1 \\\\ 0 \\end{pmatrix} + t\\begin{pmatrix} -1 \\\\ 0 \\\\ 1 \\end{pmatrix}$$\n\nLet $\\mathbf{w}_1 = \\begin{pmatrix} 2 \\\\ 1 \\\\ 0 \\end{pmatrix}$ and $\\mathbf{w}_2 = \\begin{pmatrix} -1 \\\\ 0 \\\\ 1 \\end{pmatrix}$.\n\n**Step 2: Verify that $\\mathbf{w}_1$ and $\\mathbf{w}_2$ are linearly independent.**\n\nSuppose $\\alpha \\mathbf{w}_1 + \\beta \\mathbf{w}_2 = \\mathbf{0}$:\n\n$$\\begin{pmatrix} 2\\alpha - \\beta \\\\ \\alpha \\\\ \\beta \\end{pmatrix} = \\begin{pmatrix} 0 \\\\ 0 \\\\ 0 \\end{pmatrix}$$\n\nFrom the second component: $\\alpha = 0$. From the third component: $\\beta = 0$. Since the only solution is $\\alpha = \\beta = 0$, the vectors are linearly independent. $\\checkmark$\n\n**Step 3: Confirm spanning.**\n\nFrom Step 1, every vector in $W$ can be written as $s\\mathbf{w}_1 + t\\mathbf{w}_2$. Therefore $\\{\\mathbf{w}_1, \\mathbf{w}_2\\}$ spans $W$.\n\nSince $\\{\\mathbf{w}_1, \\mathbf{w}_2\\}$ is a linearly independent spanning set for $W$, it is a basis.\n\n### Verification\n\n**Cross-check via Rank-Nullity Theorem:**\n\nObserve that $W = \\ker\\begin{pmatrix} 1 & -2 & 1 \\end{pmatrix}$, i.e., $W$ is the null space of the $1 \\times 3$ matrix $\\begin{pmatrix} 1 & -2 & 1 \\end{pmatrix}$.\n\nThis matrix has $\\operatorname{rank} = 1$ (it is a nonzero row vector). By the Rank-Nullity Theorem:\n\n$$\\dim(W) = n - \\operatorname{rank} = 3 - 1 = 2$$\n\nThis is consistent with our basis having 2 vectors. $\\checkmark$\n\n**Membership check:** Verify $\\mathbf{w}_1 \\in W$: $2 - 2(1) + 0 = 0$. $\\checkmark$ Verify $\\mathbf{w}_2 \\in W$: $-1 - 2(0) + 1 = 0$. $\\checkmark$\n\n### Final Answer\n\n$$\\boxed{\\text{Basis for } W = \\left\\{\\begin{pmatrix} 2 \\\\ 1 \\\\ 0 \\end{pmatrix},\\ \\begin{pmatrix} -1 \\\\ 0 \\\\ 1 \\end{pmatrix}\\right\\}, \\quad \\dim(W) = 2}$$",
+        "audit_annotations": [
+          "<!-- AUDIT: ERR-LOG-005 | Added zero vector check (Condition 1) to subspace proof -->",
+          "<!-- AUDIT: ERR-CMP-002 | Corrected second basis vector from (1,0,1)^T to (-1,0,1)^T -->",
+          "<!-- AUDIT: ERR-PED-004 | Added linear independence proof and Rank-Nullity cross-check -->",
+          "<!-- AUDIT: ERR-PED-004 | Added membership verification for both basis vectors -->",
+          "<!-- AUDIT: ERR-FMT-003 | Added Problem restatement, Verification section, and boxed Final Answer -->"
+        ]
+      }
+    }
+  ]
+}
