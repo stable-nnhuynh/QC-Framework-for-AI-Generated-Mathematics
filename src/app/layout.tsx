@@ -13,22 +13,21 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Nguyen Ngoc Huynh — MathGPT Content Specialist Portfolio",
+  title: "Nguyen Ngoc Huynh — QC Framework for AI-Generated Mathematics",
   description:
-    "Comprehensive Quality Control Framework for AI-Generated Mathematics. A personal project demonstrating expertise in mathematical content QA, error taxonomy design, and expert audit workflows for MathGPT.ai.",
+    "Comprehensive Quality Control Framework for AI-Generated Mathematics. A personal project demonstrating expertise in mathematical content QA, error taxonomy design, and expert audit workflows.",
   keywords: [
-    "MathGPT",
     "Mathematics Content Specialist",
     "AI Quality Assurance",
     "LaTeX",
     "Linear Algebra",
     "Error Taxonomy",
-    "GotIt",
     "OpenStax",
+    "Portfolio",
   ],
   authors: [{ name: "Nguyen Ngoc Huynh" }],
   openGraph: {
-    title: "Nguyen Ngoc Huynh — MathGPT Quality Framework",
+    title: "Nguyen Ngoc Huynh — QC Framework for AI-Generated Mathematics",
     description:
       "Interactive portfolio showcasing AI math content QA: Error Taxonomy, Expert SOP, and Golden Dataset case studies.",
     type: "website",

@@ -2,7 +2,7 @@
 
 ## System Overview
 
-The MathGPT Quality Framework is a **statically-generated single-page application (SPA)** built with Next.js 16 App Router. The entire app compiles to static HTML at build time, requiring no backend server.
+The QC Framework for AI-Generated Mathematics is a **statically-generated single-page application (SPA)** built with Next.js 16 App Router. The entire app compiles to static HTML at build time, requiring no backend server.
 
 ## Architecture Diagram
 

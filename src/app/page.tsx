@@ -31,7 +31,7 @@ export default function Home() {
         <div className="max-w-6xl mx-auto px-4 sm:px-6 py-4 flex items-center justify-between">
           <div>
             <h1 className="text-lg sm:text-xl font-bold text-zinc-900 dark:text-zinc-100">
-              MathGPT Quality Framework
+              QC Framework for AI-Generated Mathematics
             </h1>
             <p className="text-xs sm:text-sm text-zinc-500 dark:text-zinc-400">
               Nguyen Ngoc Huynh &mdash; Mathematics Content Specialist
@@ -73,7 +73,7 @@ export default function Home() {
           </h2>
           <p className="text-sm sm:text-base text-zinc-500 dark:text-zinc-400 leading-relaxed">
             A production-grade system for auditing, correcting, and benchmarking
-            AI math solutions. Built for the MathGPT content operations pipeline.
+            AI math solutions. Built as a personal project demonstrating production-grade QA workflows.
           </p>
         </motion.div>
 
@@ -264,7 +264,7 @@ export default function Home() {
             Nguyen Ngoc Huynh &mdash; Mathematics Content Specialist Portfolio
           </p>
           <p className="text-xs text-zinc-400 dark:text-zinc-500">
-            Built for GotIt / MathGPT.ai &middot; OpenStax-aligned
+            Personal Project &middot; OpenStax-aligned
           </p>
         </div>
       </footer>

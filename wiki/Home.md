@@ -1,8 +1,8 @@
-# MathGPT Quality Framework — Wiki
+# QC Framework for AI-Generated Mathematics — Wiki
 
 ## Overview
 
-**MathGPT Quality Framework** is an interactive portfolio dashboard built to demonstrate expertise in mathematical content quality assurance for the **Mathematics Content Specialist** role at **GotIt / MathGPT.ai**.
+**QC Framework for AI-Generated Mathematics** is an interactive portfolio dashboard built as a personal project to demonstrate expertise in mathematical content quality assurance, error taxonomy design, and expert audit workflows.
 
 The project showcases a production-grade system for auditing, correcting, and benchmarking AI-generated mathematics solutions — from error classification through expert review workflows.
 

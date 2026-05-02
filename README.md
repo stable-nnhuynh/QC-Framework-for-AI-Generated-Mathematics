@@ -1,9 +1,9 @@
-# MathGPT Quality Framework
+# QC Framework for AI-Generated Mathematics
 
 > **Interactive Portfolio** — Nguyen Ngoc Huynh
-> Mathematics Content Specialist — GotIt / MathGPT.ai
+> Personal Project — Mathematics Content QA
 
-[![CI](https://github.com/huynhmathgpt/mathgpt-portfolio/actions/workflows/ci.yml/badge.svg)](https://github.com/huynhmathgpt/mathgpt-portfolio/actions/workflows/ci.yml)
+[![CI](https://github.com/stable-nnhuynh/QC-Framework-for-AI-Generated-Mathematics/actions/workflows/ci.yml/badge.svg)](https://github.com/stable-nnhuynh/QC-Framework-for-AI-Generated-Mathematics/actions/workflows/ci.yml)
 [![Next.js](https://img.shields.io/badge/Next.js-16-black)](https://nextjs.org/)
 [![TypeScript](https://img.shields.io/badge/TypeScript-Strict-blue)](https://www.typescriptlang.org/)
 [![License](https://img.shields.io/badge/license-MIT-green)](LICENSE)
